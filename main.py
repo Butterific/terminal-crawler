@@ -98,3 +98,18 @@ input("Press any key to continue...")
 stage += 1
 
 # stage 3 code
+gd.gradient_banner("Stage 3", "#D4AF37", "#E0BFB8")
+print_line()
+print(f"{name} finds themselves in a vast, empty arena...")
+time.sleep(textdelay)
+print("As you look around, you notice a strange figure in the distance...")
+time.sleep(textdelay)
+print("The figure is wearing a hooded cloak and you can't see their face...")
+time.sleep(textdelay)
+print("The figure stares into your eyes and you feel a strange energy emanating from them...")
+time.sleep(textdelay)
+print("You feel a sudden urge to fight the figure, but you don't know why...")
+time.sleep(textdelay)
+print("The figure speaks in a deep, menacing voice...")
+time.sleep(textdelay)
+gd.gradient_text("COME FORTH!", "#8B0000", "#FF474C")
