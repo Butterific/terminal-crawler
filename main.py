@@ -1,6 +1,7 @@
 # import my gradient generator lib
 from gradientor import gradient_generators as gd
 import time
+import os
 # clear console function
 def clear():
     if os.name == 'nt': 
