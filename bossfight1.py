@@ -1,4 +1,5 @@
 import json 
+from logging import Handler
 import mimetypes
 import os
 import threading
@@ -64,7 +65,85 @@ class _shared:
         self.result = None
         self.last_ping = None
         self.done = threading.Event()
+
     def _make_handler(shared, root, entry, bridge):
-      root = os.path.readpath(root)
-      
-    
+        root = os.path.realpath(root)
+
+        class Handler(BaseHTTPRequestHandler):
+            def log_message(self, *args):
+                pass
+
+            def _send(self, code, body=b"", ctype="text/plain"):
+                # pasted from ai
+                self.send_response(code)
+                self.send_header("Content-Type", ctype)
+                self.send_header("Content-Length", str(len(body)))
+                self.send_header("Cache-Control", "no-store")
+                self.end_headers()
+                if body:
+                    self.wfile.write(body)
+
+            def _resolve(self, url_path):
+                rel = urllib.parse.unquote(urllib.parse.urlparse(url_path).path)
+                rel = rel.lstrip("/") or entry
+                full = os.path.realpath(os.path.join(root, rel))
+                # block paths outside the folder
+                if os.path.commonpath([root, full]) != root:
+                    return None
+                if os.path.isdir(full):
+                    full = os.path.join(full, "index.html")
+                return full if os.path.isfile(full) else None
+ 
+            def do_GET(self):
+                if self.path.startswith("/__ping"):
+                    shared.last_ping = time.time()
+                    self._send(204)
+                    return
+ 
+                full = self._resolve(self.path)
+                if full is None:
+                    self._send(404, b"Not found")
+                    return
+ 
+                with open(full, "rb") as f:
+                    data = f.read()
+ 
+                ctype = mimetypes.guess_type(full)[0] or "application/octet-stream"
+                if full.lower().endswith((".html", ".htm")):
+                    text = data.decode("utf-8", errors="replace")
+                    idx = text.lower().rfind("</body>")
+                    if idx == -1:
+                        text += bridge
+                    else:
+                        text = text[:idx] + bridge + text[idx:]
+                    data = text.encode("utf-8")
+                    ctype = "text/html; charset=utf-8"
+                elif ctype.startswith("text/") or ctype in (
+                    "application/javascript", "application/json"
+                ):
+                    ctype += "; charset=utf-8" if "charset" not in ctype else ""
+                self._send(200, data, ctype)
+ 
+            def do_POST(self):
+                if self.path != "/__result":
+                    self._send(404, b"Not found")
+                    return
+                try:
+                    length = int(self.headers.get("Content-Length", 0))
+                    shared.result = json.loads(self.rfile.read(length) or b"{}")
+                except (ValueError, json.JSONDecodeError):
+                    self._send(400, b"Bad request")
+                    return
+                self._send(200, b"ok")
+                shared.done.set()
+ 
+        return Handler
+    # end of pasted from ai segment
+def startbossfight1(folder, entry="index.html", win_Var=None, lose_var=None, watch_vars=(), open_browser=True):
+    """
+     folder      path to your boss fight folder
+    entry       HTML file to open (default index.html)
+    win_var     JS variable name. When truthy, the fight is a win.
+    lose_var    JS variable name. When truthy, the fight is a loss.
+    watch_vars  JS variable names to read back when the fight ends.
+    """
