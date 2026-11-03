@@ -51,7 +51,7 @@ function setup() {
   // loading the run state image
   run = loadImage("sonic-running.gif");
   // loading the temu sonic image
-  sonic = loadImage("temu-sonic.png");
+  sonic = loadImage("boss.png");
 
   // setting the canvas to the windows sizings
   createCanvas(800, 800);
