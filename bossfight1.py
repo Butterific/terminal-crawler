@@ -17,7 +17,7 @@ ping_timeout = 15 # seconds without a ping before assuiming that tge tab closed
 # this is the part that detects if the bossfight has finished and if the player has won or lost and the js that 
 # alerts the server
 
-bridge = """
+BRIDGE_TEMPLATE = """
 <script>
 (function () {
   var CFG = __CFG__;
@@ -162,7 +162,7 @@ def startbossfight1(folder, entry="index.html", win_var=None, lose_var=None, wat
         raise FileNotFoundError(f"{entry} not found in {folder}")
  
     cfg = {"win": win_var, "lose": lose_var, "watch": list(watch_vars)}
-    bridge = bridge.replace("__CFG__", json.dumps(cfg).replace("</", "<\\/"))
+    bridge = BRIDGE_TEMPLATE.replace("__CFG__", json.dumps(cfg).replace("</", "<\\/"))
  
     shared = _shared()
     handler = _shared._make_handler(shared, folder, entry, bridge)
@@ -182,10 +182,10 @@ def startbossfight1(folder, entry="index.html", win_var=None, lose_var=None, wat
     try:
         while not shared.done.wait(1):
             now = time.time()
-            if shared.last_ping is None and now - started > START_TIMEOUT:
+            if shared.last_ping is None and now - started > start_timeout:
                 result = abandoned
                 break
-            if shared.last_ping is not None and now - shared.last_ping > PING_TIMEOUT:
+            if shared.last_ping is not None and now - shared.last_ping > ping_timeout:
                 result = abandoned
                 break
         if result is None:
