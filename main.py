@@ -133,6 +133,8 @@ from bossfight1 import startbossfight1
 
 print("LET THE BATTLE BEGIN!")
 time.sleep(textdelayquick)
+print("WASD to move, and R to attack!")
+time.sleep(3)
 result = startbossfight1(
     "bossfight1",
     win_var="bossDefeated",
