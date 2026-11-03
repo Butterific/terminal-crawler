@@ -139,7 +139,7 @@ class _shared:
  
         return Handler
     # end of pasted from ai segment
-def startbossfight1(folder, entry="index.html", win_Var=None, lose_var=None, watch_vars=(), open_browser=True):
+def startbossfight1(folder, entry="index.html", win_var=None, lose_var=None, watch_vars=(), open_browser=True):
     """
      folder      path to your boss fight folder
     entry       HTML file to open (default index.html)
@@ -147,3 +147,55 @@ def startbossfight1(folder, entry="index.html", win_Var=None, lose_var=None, wat
     lose_var    JS variable name. When truthy, the fight is a loss.
     watch_vars  JS variable names to read back when the fight ends.
     """
+    """
+    folder      path to your boss fight folder
+    entry       HTML file to open (default index.html)
+    win_var     JS variable name. When truthy, the fight is a win.
+    lose_var    JS variable name. When truthy, the fight is a loss.
+    watch_vars  JS variable names to read back when the fight ends.
+ 
+    Returns: {"won": bool, "vars": {...}, "extra": {...}}
+    If the tab closes early: {"won": False, "abandoned": True, "vars": {}}
+    """
+    folder = os.path.abspath(folder)
+    if not os.path.isfile(os.path.join(folder, entry)):
+        raise FileNotFoundError(f"{entry} not found in {folder}")
+ 
+    cfg = {"win": win_var, "lose": lose_var, "watch": list(watch_vars)}
+    bridge = bridge.replace("__CFG__", json.dumps(cfg).replace("</", "<\\/"))
+ 
+    shared = _shared()
+    handler = _shared._make_handler(shared, folder, entry, bridge)
+    server = ThreadingHTTPServer(("127.0.0.1", 0), handler)  # port 0 = free port
+    url = f"http://127.0.0.1:{server.server_address[1]}/"
+ 
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+ 
+    print(f"Boss fight is live at {url}")
+    if open_browser:
+        webbrowser.open(url)
+    print("Waiting for the fight to finish...")
+ 
+    abandoned = {"won": False, "abandoned": True, "vars": {}, "extra": {}}
+    started = time.time()
+    result = None
+    try:
+        while not shared.done.wait(1):
+            now = time.time()
+            if shared.last_ping is None and now - started > START_TIMEOUT:
+                result = abandoned
+                break
+            if shared.last_ping is not None and now - shared.last_ping > PING_TIMEOUT:
+                result = abandoned
+                break
+        if result is None:
+            result = shared.result
+    except KeyboardInterrupt:
+        result = abandoned
+    finally:
+        server.shutdown()
+        server.server_close()
+ 
+    return result
+if __name__ == "__main__":
+    print(startbossfight1("bossfight", watch_vars=["playerHP", "bossHP"]))

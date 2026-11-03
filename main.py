@@ -129,4 +129,21 @@ stage += 1
 # stage 4 code
 gd.gradient_banner("Stage 4", "#D78F7D", "#E82C06")
 print_line()
+from bossfight1 import startbossfight1
+
+print("LET THE BATTLE BEGIN!")
+time.sleep(textdelayquick)
+result = startbossfight1(
+    "bossfight1",
+    win_var="bossDefeated",
+    lose_var="playerDead",
+    watch_vars=["playerHP", "bossHP", "turns"],
+)
+
+clear()
+if result["won"]:
+    print(f"You won! HP left: {result['vars']['playerHP']}")
+    stage += 1
+else:
+    endgame()
 
