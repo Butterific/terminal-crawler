@@ -121,3 +121,12 @@ time.sleep(textdelay)
 print("The figure speaks in a deep, menacing voice...")
 time.sleep(textdelay)
 gd.gradient_text("COME FORTH!", "#8B0000", "#FF474C")
+time.sleep(textdelay)
+input("Press any key to continue...")
+clear()
+stage += 1
+
+# stage 4 code
+gd.gradient_banner("Stage 4", "#D78F7D", "#E82C06")
+print_line()
+
