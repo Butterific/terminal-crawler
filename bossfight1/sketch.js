@@ -35,7 +35,7 @@ function preload() {
   // load the fry attack item thing
   fry = loadImage("sonic-fry.png");
   // load the bg
-  bg = loadImage("sonicbg.gif");
+  bg = loadImage("bg.gif");
   // load the gem player attack
   gemimg = loadImage("gem.png");
   // load the win screen image
