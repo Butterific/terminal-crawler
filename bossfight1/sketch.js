@@ -10,37 +10,22 @@ let dirmoving = 0;
 // animation control variables
 let run1, run2, idle, jump;
 // variables to determine current movement state
-let runstate, idlestate, jumpstate; // for states, if the state is 0, it means its inactive, while one means its actives
-// debug toggle var
+let runstate, idlestate, jumpstate; 
 let debugtoggle = 0;
-// boss health
 let bosshealth = 150;
-// boss default postions
 let bossx = 0;
 let bossy = 0;
-// timer var
 let frames = 0;
-// defualt player hp var
 let playerhp = 100;
-// song vars
 song = new Audio();
-// music is "Sonic Frontiers (Flowing Into The Light) - [Official Soundtrack] Ost" or "https://soundcloud.com/sonic-the-hedgehog1/sonic-frontiers-flowing-into?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
 song.src = "song.mp3";
-// play the song
 function preload() {
-  // load the defualt idle anim img
   spritee = loadImage("idle.png");
-  // load the text font for the text (dynapuff)
   flint = loadFont("dynapuff.ttf");
-  // load the fry attack item thing
   fry = loadImage("sonic-fry.png");
-  // load the bg
   bg = loadImage("bg.gif");
-  // load the gem player attack
   gemimg = loadImage("gem.png");
-  // load the win screen image
   win = loadImage("win.png");
-  // load the lose screen image
   lose = loadImage("lost.png");
 }
 function setup() {
