@@ -18,18 +18,18 @@ let song = new Audio();
 song.src = "assets/music/boss.mp3";
 function preload() {
   spritee = loadImage("assets/idle.png");
-  flint = loadFont("dynapuff.ttf");
-  fry = loadImage("sonic-fry.png");
-  bg = loadImage("bg.gif");
-  gemimg = loadImage("gem.png");
-  win = loadImage("win.png");
-  lose = loadImage("lost.png");
+  flint = loadFont("assets/dynapuff.ttf");
+  fry = loadImage("assets/sonic-fry.png");
+  bg = loadImage("assets/bg.gif");
+  gemimg = loadImage("assets/gem.png");
+  win = loadImage("assets/win.png");
+  lose = loadImage("assets/lost.png");
 }
 function setup() {
   idle = loadImage("assets/idle.png");
   jump = loadImage("assets/idle.png");
   run = loadImage("assets/run.gif");
-  sonic = loadImage("boss.png");
+  sonic = loadImage("assets/boss.png");
 
   createCanvas(800, 800);
   player = new Sprite(spritee, 0, 0, 1);
