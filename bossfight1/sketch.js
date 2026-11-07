@@ -17,7 +17,7 @@ let song = new Audio();
 // music taken from https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200067&Search=Search
 song.src = "assets/music/boss.mp3";
 function preload() {
-  spritee = loadImage("idle.png");
+  spritee = loadImage("assets/idle.png");
   flint = loadFont("dynapuff.ttf");
   fry = loadImage("sonic-fry.png");
   bg = loadImage("bg.gif");
@@ -26,9 +26,9 @@ function preload() {
   lose = loadImage("lost.png");
 }
 function setup() {
-  idle = loadImage("idle.png");
-  jump = loadImage("jump.png");
-  run = loadImage("sonic-running.gif");
+  idle = loadImage("assets/idle.png");
+  jump = loadImage("assets/idle.png");
+  run = loadImage("assets/run.gif");
   sonic = loadImage("boss.png");
 
   createCanvas(800, 800);
