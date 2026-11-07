@@ -13,9 +13,9 @@ let bossx = 0;
 let bossy = 0;
 let frames = 0;
 let playerhp = 100;
-song = new Audio();
+let song = new Audio();
 // music taken from https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200067&Search=Search
-song.src = "boss.mp3";
+song.src = "assets/music/boss.mp3";
 function preload() {
   spritee = loadImage("idle.png");
   flint = loadFont("dynapuff.ttf");
