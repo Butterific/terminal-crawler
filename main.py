@@ -141,10 +141,12 @@ result = startbossfight1(
     lose_var="playerDead",
     watch_vars=["playerHP", "bossHP", "turns"],
 )
-
-clear()
 if result["won"]:
     print(f"You won! HP left: {result['vars']['playerHP']}")
+    print(f"Turns taken: {result['vars']['turns']}")
+    gd.gradient_text("You have defeated the boss and can now proceed to the next stage!", "#D78F7D", "#E82C06")
+    input=("Press any key to continue...")
+    input=("Press any key to continue... x2")
     stage += 1
 else:
     endgame()

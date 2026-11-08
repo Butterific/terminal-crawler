@@ -13,6 +13,11 @@ let bossx = 0;
 let bossy = 0;
 let frames = 0;
 let playerhp = 100;
+let turns = 0;
+var playerHP = playerhp;
+var bossHP = bosshealth;
+var bossDefeated = false;
+var playerDead = false;
 let song = new Audio();
 // music taken from https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200067&Search=Search
 song.src = "assets/music/boss.mp3";
@@ -53,6 +58,8 @@ function draw() {
 
     song.play();
 
+  updateBossFightState();
+
   if (playerhp <= 0) {
 
     background(lose);
@@ -62,7 +69,7 @@ function draw() {
 
     background(win);
 
-    playerhp = 10000000000000000000000;
+    noLoop();
   } else {
 
     tint(80.5);
@@ -140,6 +147,23 @@ function draw() {
   } else {
 
     fry.visible = true;
+  }
+}
+
+function updateBossFightState() {
+  playerHP = playerhp;
+  bossHP = bosshealth;
+
+  if (playerhp <= 0 && !playerDead) {
+    playerDead = true;
+    if (typeof bossFightEnd === "function") {
+      bossFightEnd(false);
+    }
+  } else if (bosshealth <= 0 && !bossDefeated) {
+    bossDefeated = true;
+    if (typeof bossFightEnd === "function") {
+      bossFightEnd(true);
+    }
   }
 }
 
@@ -328,6 +352,7 @@ function moveboss() {
 }
 function bossattack1() {
 
+  turns += 1;
   fry.x = sonic.x;
   fry.y = sonic.y;
 
