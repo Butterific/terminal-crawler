@@ -21,7 +21,7 @@ function preload() {
   flint = loadFont("assets/dynapuff.ttf");
   fry = loadImage("assets/boss-attack.png");
   bg = loadImage("assets/bg.gif");
-  gemimg = loadImage("assets/gem.png");
+  gemimg = loadImage("assets/player-attack.png");
   win = loadImage("assets/win.png");
   lose = loadImage("assets/lost.png");
 }
