@@ -19,7 +19,7 @@ song.src = "assets/music/boss.mp3";
 function preload() {
   spritee = loadImage("assets/idle.png");
   flint = loadFont("assets/dynapuff.ttf");
-  fry = loadImage("assets/sonic-fry.png");
+  fry = loadImage("assets/boss-attack.png");
   bg = loadImage("assets/bg.gif");
   gemimg = loadImage("assets/gem.png");
   win = loadImage("assets/win.png");
