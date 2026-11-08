@@ -92,7 +92,7 @@ function draw() {
   textFont(flint);
   textSize(36);
 
-  text("Sonic Vs Temu Sonic", 420, 40);
+  text("Terminal Crawler", 470, 40);
   fill(255, 0, 0);
 
   if (playerhp >= 70) {
