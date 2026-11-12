@@ -135,22 +135,22 @@ print("LET THE BATTLE BEGIN!")
 time.sleep(textdelayquick)
 print("WASD to move, and R to attack!")
 time.sleep(3)
-result = startbossfight1(
-    "bossfight1",
-    win_var="bossDefeated",
-    lose_var="playerDead",
-    watch_vars=["playerHP", "bossHP", "turns"],
-)
-if result["won"]:
-    print(f"You won! HP left: {result['vars']['playerHP']}")
-    print(f"Turns taken: {result['vars']['turns']}")
-    gd.gradient_text("You have defeated the boss and can now proceed to the next stage!", "#D78F7D", "#E82C06")
-    input=("Press any key to continue...")
-    input=("Press any key to continue... x2")
-    stage += 1
-else:
-    endgame()
-
+# result = startbossfight1(
+#     "bossfight1",
+#     win_var="bossDefeated",
+#     lose_var="playerDead",
+#     watch_vars=["playerHP", "bossHP", "turns"],
+# )
+# if result["won"]:
+#     print(f"You won! HP left: {result['vars']['playerHP']}")
+#     print(f"Turns taken: {result['vars']['turns']}")
+#     gd.gradient_text("You have defeated the boss and can now proceed to the next stage!", "#D78F7D", "#E82C06")
+#     input("Press any key to continue...")
+#     input("Press any key to continue... x2")
+#     stage += 1
+# else:
+#     endgame()
+clear()
 gd.gradient_banner("Stage 5", "#FF0000", "#80EF80")
 print_line()
 print("You sudently plop back to the same room where you found the artifact, but this time, the artifact is gone...")
@@ -175,6 +175,7 @@ if choice.lower() == "fall":
     print("HOLD THAT WASNT PART OF THE SCRIPT")
     time.sleep(textdelay)
     gd.gradient_text("Ì̴̧͔ ̴̜̱͓̾̂͝W̵̤͒͋Ì̸̛̭͉L̵̡͖̱͌͂L̸̢̢͘͝ ̵̛̮̝͐͗B̷̨̺̰̌̍͐Ȩ̵̻̮̀̍̐ ̶̧̼̐͋Ţ̸̐͋A̵̱̺͍͐K̶̪͛͝ͅI̷͔͔͠N̴̗̿Ḡ̷̜͇̗ ̷̙́̔͘ͅC̶̟̭̝͋O̵̝͂͠N̶̙̻̘̍T̴̡̳̄Ŗ̶̭̩͑͑Ǫ̸͚̖̆̊̐L̴̖͎̿ ̴͙̣̦̈́̋͆O̴̼̠̱̽F̸̢̫̳̾̈́ ̵̧̹͇̍T̴̢̢͙̈̇H̸̘̦̐̂̕I̴̛̤̼͇͒S̴̳̀͗̕ ̴̧̻͋N̴͎̆̿O̶̞͛͂̐W̸̦̳͈̌", "#FF0000", "#8b0000")
+    input("Press any key to continue...")
     clear()
     stage += 1
 else:
@@ -184,6 +185,63 @@ else:
     print("You took too long, the floor incommpases with spikes, as sharp as a sword, and you fall into the depts...")
     time.sleep(textdelay)
     print("You die on impact never seen again...")
+    input("Press any key to continue...")
     time.sleep(textdelay + 2)
     clear()
     endgame()
+clear()
+gd.gradient_banner("Stage 6", "#FF0000", "#80EF80")
+print_line()
+print(f"{name}, I have brought you here, your previous guide has been taken from you, and now you must face the trials of the Terminal Crawler alone...")
+time.sleep(textdelay)
+print("\x1B[3m You notice skulls on the walls, as the spikes rise above you showing one of many outcomes of your previous choice, you feel a sense of dread wash over you... \x1B[0m")
+time.sleep(textdelay)
+print("You notice a strange figure in the distance, it is wearing a hooded cloak and you can't see their face...")
+time.sleep(textdelay)
+print("The figure stares into your eyes and you feel a strange energy emanating from them...")
+time.sleep(textdelay)
+print("You feel a sudden urge to fight the figure, but you don't know why...")
+time.sleep(textdelay)
+print("The figure speaks in a deep, menacing voice...")
+time.sleep(textdelay)
+gd.gradient_text("W̷̨̩͉̑̀͂H̶͖̯̏̈͆O̴̳͎͝ ̷̦̇̃A̸̦͙͚̎ͅR̶͙͌͑͝͠Ẻ̸̛͙̝̰̩̑̚ ̸̼̊̑͊Y̴̛̥̏͝Ȍ̸̹͇͈͋U̴̡̘͂̊̕", "#8B0000", "#FF474C")
+time.sleep(textdelay)
+input("Press any key to continue...")
+clear()
+
+gd.gradient_banner("Stage 7?", "#FF0000", "#80EF80")
+print_line()
+stage = 7
+print(f"The figure tilts its head. For the first time, it sounds afraid, {name}...")
+time.sleep(textdelay)
+print("You reach for the artifact, but your hand passes through empty air...")
+time.sleep(textdelay)
+print("The figure slowly removes its hood, revealing your own face beneath it.")
+time.sleep(textdelay)
+gd.gradient_text(f'"You keep asking who I am. The better question is: who told you that you are {name}?"', "#FF0000", "#8B0000")
+time.sleep(textdelay)
+print("Every light in the room flickers. Somewhere beyond the walls, a keyboard begins to type.")
+time.sleep(textdelay)
+print("A message appears on the floor, written in the same glowing symbols as the artifact:")
+time.sleep(textdelay)
+gd.gradient_text("THE CRAWLER IS NOT THE ONE BEING TESTED.", "#FF0000", "#8B0000")
+time.sleep(textdelay)
+print("The figure points behind you. The doorway is open, but the darkness beyond it is breathing.")
+time.sleep(textdelay)
+choice = input("Do you trust the figure, or enter the doorway? (trust/enter): ")
+if choice.lower() == "trust":
+    print_line()
+    print("You turn back toward the figure...")
+    time.sleep(textdelayquick)
+    print("It smiles with your mouth and reaches for the controls.")
+    time.sleep(textdelayquick)
+    gd.gradient_text('"Finally. Now I can play as you."', "#FF0000", "#8B0000")
+else:
+    print_line()
+    print("You step through the doorway. The darkness closes behind you, but the terminal keeps running.")
+    time.sleep(textdelayquick)
+    print("From the other side, your own voice whispers: 'Good choice.'")
+    time.sleep(textdelayquick)
+input("Press any key to continue...")
+clear()
+
