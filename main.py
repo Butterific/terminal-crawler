@@ -151,6 +151,7 @@ time.sleep(3)
 # else:
 #     endgame()
 clear()
+# code for stage 5
 gd.gradient_banner("Stage 5", "#FF0000", "#80EF80")
 print_line()
 print("You sudently plop back to the same room where you found the artifact, but this time, the artifact is gone...")
@@ -190,6 +191,7 @@ else:
     clear()
     endgame()
 clear()
+# code for stage 6
 gd.gradient_banner("Stage 6", "#FF0000", "#80EF80")
 print_line()
 print(f"{name}, I have brought you here, your previous guide has been taken from you, and now you must face the trials of the Terminal Crawler alone...")
@@ -209,6 +211,7 @@ time.sleep(textdelay)
 input("Press any key to continue...")
 clear()
 
+# code for stage 7
 gd.gradient_banner("Stage 7?", "#FF0000", "#80EF80")
 print_line()
 stage = 7
@@ -236,6 +239,9 @@ if choice.lower() == "trust":
     print("It smiles with your mouth and reaches for the controls.")
     time.sleep(textdelayquick)
     gd.gradient_text('"Finally. Now I can play as you."', "#FF0000", "#8B0000")
+    input("Press any key to continue...")
+    endgame()
+
 else:
     print_line()
     print("You step through the doorway. The darkness closes behind you, but the terminal keeps running.")
@@ -244,4 +250,11 @@ else:
     time.sleep(textdelayquick)
 input("Press any key to continue...")
 clear()
+
+
+# code for stage 8
+gd.gradient_banner("Stage 8", "#FF0000", "#80EF80")
+print_line()
+stage = 8
+
 
