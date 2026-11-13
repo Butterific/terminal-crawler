@@ -141,8 +141,8 @@ class _shared:
     # end of pasted from ai segment
 def startbossfight1(folder, entry="index.html", win_var=None, lose_var=None, watch_vars=(), open_browser=True):
     """
-     folder      path to your boss fight folder
-    entry       HTML file to open (default index.html)
+     folder      path to the boss fight folder
+    entry       html file to open (default index.html)
     win_var     JS variable name. When truthy, the fight is a win.
     lose_var    JS variable name. When truthy, the fight is a loss.
     watch_vars  JS variable names to read back when the fight ends.
