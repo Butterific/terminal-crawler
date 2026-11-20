@@ -2,11 +2,6 @@ import os
 import pyfiglet
 import random
 
-def clear_console():
-    if os.name == 'nt': 
-        os.system('cls')
-    else: 
-        os.system('clear')
 def hex_to_rgb(value):
     value = value.lstrip('#')
     lv = len(value)
@@ -35,11 +30,6 @@ def get_gradient(start_hex, end_hex, steps):
         gradient_colors.append((r, g, b))
 
     return gradient_colors
-def random_hex_color():
-    color = random.randrange(0, 2**24)
-    hex_color = hex(color)
-    hex_color = hex_color[2:]
-    return hex_color
 def get_console_size():
     try:
         size = os.get_terminal_size()
@@ -100,17 +90,3 @@ class gradient_generators:
         for r, g, b in gradient:
             colored_line = f"\033[48;2;{r};{g};{b}m{' ' * width}\033[0m"
             print(colored_line)
-
-
-def render_image(imagepath: str):
-    clear_console()
-    try:
-        with Image.open(imagepath) as img:
-            clear_console()
-            term_image = AutoImage(img)
-            term_image.draw()
-
-    except FileNotFoundError:
-        print(f"Error: The file at '{imagepath}' was not found.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
