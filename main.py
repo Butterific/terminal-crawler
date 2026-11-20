@@ -3,6 +3,7 @@ from gradientor import gradient_generators as gd
 import time
 import os
 import sys
+import random
 
 # vars
 stage = 0
@@ -35,8 +36,8 @@ name = input("To start, Please enter your name: ")
 name = name[0:1].upper() + name[1:]
 
 # for debug/ delete later
-textdelay = float(input("Please enter your preferred text delay (in seconds): "))
-textdelayquick = float(input("Please enter your preferred quick text delay (in seconds): "))
+# textdelay = float(input("Please enter your preferred text delay (in seconds): "))
+# textdelayquick = float(input("Please enter your preferred quick text delay (in seconds): "))
 # end of debug 
 
 
@@ -135,21 +136,21 @@ print("LET THE BATTLE BEGIN!")
 time.sleep(textdelayquick)
 print("WASD to move, and R to attack!")
 time.sleep(3)
-# result = startbossfight1(
-#     "bossfight1",
-#     win_var="bossDefeated",
-#     lose_var="playerDead",
-#     watch_vars=["playerHP", "bossHP", "turns"],
-# )
-# if result["won"]:
-#     print(f"You won! HP left: {result['vars']['playerHP']}")
-#     print(f"Turns taken: {result['vars']['turns']}")
-#     gd.gradient_text("You have defeated the boss and can now proceed to the next stage!", "#D78F7D", "#E82C06")
-#     input("Press any key to continue...")
-#     input("Press any key to continue... x2")
-#     stage += 1
-# else:
-#     endgame()
+result = startbossfight1(
+    "bossfight1",
+    win_var="bossDefeated",
+    lose_var="playerDead",
+    watch_vars=["playerHP", "bossHP", "turns"],
+)
+if result["won"]:
+    print(f"You won! HP left: {result['vars']['playerHP']}")
+    print(f"Turns taken: {result['vars']['turns']}")
+    gd.gradient_text("You have defeated the boss and can now proceed to the next stage!", "#D78F7D", "#E82C06")
+    input("Press any key to continue...")
+    input("Press any key to continue... x2")
+    stage += 1
+else:
+    endgame()
 clear()
 # code for stage 5
 gd.gradient_banner("Stage 5", "#FF0000", "#80EF80")
@@ -260,3 +261,140 @@ print("You find yourself in a room filled with monitors, each displaying a diffe
 time.sleep(textdelay)
 print("You see yourself as a child, playing with friends, and then as a teenager, making mistakes and learning from them.")
 time.sleep(textdelay)
+print("You see yourself as an adult, facing challenges and overcoming obstacles.")
+time.sleep(textdelay)
+print("The scenes are all connected, showing the journey of your life from start to finish.")
+time.sleep(textdelay)
+input("Press any key to continue...")
+clear()
+
+# code for stage 9
+gd.gradient_banner("Stage 9", "#FF0000", "#80EF80")
+print_line()
+stage = 9
+print("You are now in the final stage of the game.")
+time.sleep(textdelay)
+print("You see a door in front of you, but it is locked.")
+time.sleep(textdelay)
+input("Press any key to continue...")
+clear()
+
+# code for stage 10
+gd.gradient_banner("Stage 10", "#FF0000", "#80EF80")
+print_line()
+stage = 10
+print("The locked door dissolves the moment you stop trying to open it...")
+time.sleep(textdelay)
+print("Beyond it sits the thing that has been watching you through every monitor.")
+time.sleep(textdelay)
+gd.gradient_text("THE NULL CRAWLER", "#FF0000", "#8B0000")
+time.sleep(textdelay)
+print("It is a final error given a face. Every failed choice is trapped inside it.")
+time.sleep(textdelay)
+print("The battle is fought through commands, not luck.")
+time.sleep(textdelay)
+input("Press enter to face the final boss...")
+clear()
+
+def boss_bar(current, maximum):
+    percent = max(0, current)
+    bars = 20
+    filled = int((percent / maximum) * bars)
+    return "[" + "#" * filled + "-" * (bars - filled) + "]"
+
+def final_bossfight():
+    player_hp = 100
+    boss_hp = 150
+    charge = 0
+
+    while player_hp > 0 and boss_hp > 0:
+        gd.gradient_banner("THE NULL CRAWLER", "#FF0000", "#8B0000")
+        print_line()
+        print(f"{name}: {boss_bar(player_hp, 100)} {player_hp}/100 HP")
+        print(f"NULL CRAWLER: {boss_bar(boss_hp, 150)} {boss_hp}/150 HP")
+        print(f"Charge: {charge}/3")
+        print_line()
+
+        if charge >= 3:
+            print("1. STRIKE - normal attack")
+            print("2. GUARD - reduce the boss's next attack")
+            print("3. OVERDRIVE - release a devastating charge attack")
+        else:
+            print("1. STRIKE - normal attack")
+            print("2. GUARD - reduce the boss's next attack")
+            print("3. CHARGE - gain 1 charge and prepare for overdrive")
+
+        choice = input("Enter a command (1/2/3): ").strip()
+
+        guarding = choice == "2"
+        if choice == "1":
+            damage = random.randint(12, 19)
+            boss_hp -= damage
+            print(f"\n{name} strikes the terminal shell for {damage} damage!")
+        elif choice == "2":
+            print(f"\n{name} raises a guard around the connection.")
+        elif choice == "3":
+            if charge >= 3:
+                damage = random.randint(35, 48)
+                boss_hp -= damage
+                charge = 0
+                print(f"\n{name} releases OVERDRIVE for {damage} damage!")
+            else:
+                charge += 1
+                print(f"\n{name} feeds corrupted code into the command. Charge: {charge}/3")
+        else:
+            print("\nUnknown command. The boss takes the opening!")
+
+        if boss_hp <= 0:
+            break
+
+        time.sleep(textdelayquick)
+        if boss_hp <= 50:
+            boss_damage = random.randint(17, 25)
+            boss_move = "EXECUTE: SYSTEM_CORRUPTION"
+        else:
+            boss_damage = random.randint(10, 17)
+            boss_move = "EXECUTE: DATA_ERASE"
+
+        if guarding:
+            reduced = boss_damage - random.randint(8, 12)
+            boss_damage = max(3, reduced)
+            boss_move += " - BLOCKED"
+
+        player_hp -= boss_damage
+        print(f"The NULL CRAWLER uses {boss_move}!")
+        print(f"{name} takes {boss_damage} damage.")
+        time.sleep(textdelay)
+
+        if player_hp <= 0:
+            break
+        clear()
+
+    print_line()
+    if player_hp <= 0:
+        clear()
+        gd.gradient_banner("CONNECTION TERMINATED", "#FF0000", "#8B0000")
+        print_line()
+        print("The terminal closes around you.")
+        print(f"The NULL CRAWLER remains, and your run ends at stage {stage}.")
+        time.sleep(textdelay)
+        endgame()
+
+    clear()
+    gd.gradient_banner("NULL CRAWLER DEFEATED", "#D4AF37", "#E0BFB8")
+    print_line()
+    print("The corruption screen freezes...")
+    time.sleep(textdelay)
+    print("Then every symbol in the terminal starts returning to normal.")
+    time.sleep(textdelay)
+    print(f"You survived with {player_hp} HP.")
+    print("The final doorway opens, but the crawler's voice follows you out...")
+    time.sleep(textdelay)
+    gd.gradient_text(f'"There is only one save left, {name}. Yours."', "#D4AF37", "#E0BFB8")
+    time.sleep(textdelay)
+    gd.gradient_text("-----------------------------------------", "#D4AF37", "#E0BFB8")
+    gd.gradient_text("Thanks for playing Terminal Crawler!", "#D4AF37", "#E0BFB8")
+    gd.gradient_text("Created by: @butterific", "#D4AF37", "#E0BFB8")
+
+final_bossfight()
+
