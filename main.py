@@ -260,4 +260,3 @@ print("You find yourself in a room filled with monitors, each displaying a diffe
 time.sleep(textdelay)
 print("You see yourself as a child, playing with friends, and then as a teenager, making mistakes and learning from them.")
 time.sleep(textdelay)
-    
