@@ -10,9 +10,9 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 # vars
 start_timeout = 120 # seconds to wait before the page loads
-ping_timeout = 15 # seconds without a ping before assuiming that tge tab closed
+ping_timeout = 15 # seconds without a ping before assuming that the tab closed
 
-# this part was asisted with ai
+# this part was assisted with ai
 
 # this is the part that detects if the bossfight has finished and if the player has won or lost and the js that 
 # alerts the server
