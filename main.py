@@ -175,7 +175,7 @@ if choice.lower() == "fall":
     time.sleep(textdelay)
     print("HOLD THAT WASNT PART OF THE SCRIPT")
     time.sleep(textdelay)
-    gd.gradient_text("Ì̴̧͔ ̴̜̱͓̾̂͝W̵̤͒͋Ì̸̛̭͉L̵̡͖̱͌͂L̸̢̢͘͝ ̵̛̮̝͐͗B̷̨̺̰̌̍͐Ȩ̵̻̮̀̍̐ ̶̧̼̐͋Ţ̸̐͋A̵̱̺͍͐K̶̪͛͝ͅI̷͔͔͠N̴̗̿Ḡ̷̜͇̗ ̷̙́̔͘ͅC̶̟̭̝͋O̵̝͂͠N̶̙̻̘̍T̴̡̳̄Ŗ̶̭̩͑͑Ǫ̸͚̖̆̊̐L̴̖͎̿ ̴͙̣̦̈́̋͆O̴̼̠̱̽F̸̢̫̳̾̈́ ̵̧̹͇̍T̴̢̢͙̈̇H̸̘̦̐̂̕I̴̛̤̼͇͒S̴̳̀͗̕ ̴̧̻͋N̴͎̆̿O̶̞͛͂̐W̸̦̳͈̌", "#FF0000", "#8b0000")
+    gd.gradient_text("I̷̴ W̴̸I̸̵L̴̷L̵̸ B̸̴E̷̵ T̴̸A̷̵K̴̷I̸̵N̴̷G̵̸ C̷̴O̵̸N̴̷T̸̵R̴̷O̵̸L̷̴ O̵̸F̴̷ T̸̵H̴̷I̵̸S̷̴ N̵̸O̴̷W̸̵", "#FF0000", "#8b0000")
     input("Press any key to continue...")
     clear()
     stage += 1
@@ -206,7 +206,7 @@ print("You feel a sudden urge to fight the figure, but you don't know why...")
 time.sleep(textdelay)
 print("The figure speaks in a deep, menacing voice...")
 time.sleep(textdelay)
-gd.gradient_text("W̷̨̩͉̑̀͂H̶͖̯̏̈͆O̴̳͎͝ ̷̦̇̃A̸̦͙͚̎ͅR̶͙͌͑͝͠Ẻ̸̛͙̝̰̩̑̚ ̸̼̊̑͊Y̴̛̥̏͝Ȍ̸̹͇͈͋U̴̡̘͂̊̕", "#8B0000", "#FF474C")
+gd.gradient_text("W̷̴H̴̸O̸̵ A̴̷R̵̸E̸̴ Y̷̵O̴̸U̷̵", "#8B0000", "#FF474C")
 time.sleep(textdelay)
 input("Press any key to continue...")
 clear()
@@ -256,5 +256,8 @@ clear()
 gd.gradient_banner("Stage 8", "#FF0000", "#80EF80")
 print_line()
 stage = 8
-
-
+print("You find yourself in a room filled with monitors, each displaying a different scene from your past.")
+time.sleep(textdelay)
+print("You see yourself as a child, playing with friends, and then as a teenager, making mistakes and learning from them.")
+time.sleep(textdelay)
+    
