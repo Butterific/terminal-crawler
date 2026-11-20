@@ -35,11 +35,6 @@ gd.gradient_text("A fun, interactive terminal game that progresses through 10 st
 name = input("To start, please enter your name: ")
 name = name[0:1].upper() + name[1:]
 
-# for debug/ delete later
-textdelay = float(input("Please enter your preferred text delay (in seconds): "))
-textdelayquick = float(input("Please enter your preferred quick text delay (in seconds): "))
-# end of debug 
-
 
 print(f"Hello, {name}! Welcome to Terminal Crawler!")
 print("Let's begin!")
