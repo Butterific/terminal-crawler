@@ -307,6 +307,10 @@ def final_bossfight():
     boss_hp = 150
     charge = 0
 
+    def change_charge(amount):
+        nonlocal charge
+        charge = max(0, min(3, charge + amount))
+
     while player_hp > 0 and boss_hp > 0:
         gd.gradient_banner("THE NULL CRAWLER", "#FF0000", "#8B0000")
         print_line()
@@ -319,16 +323,28 @@ def final_bossfight():
             print("1. STRIKE - normal attack")
             print("2. GUARD - reduce the boss's next attack")
             print("3. OVERDRIVE - release a devastating charge attack")
+            if player_hp < 100:
+                print("4. HEAL - restore 30 HP")
+            else:
+                print("4. HEAL - unavailable: HP is already full")
         else:
             print("1. STRIKE - normal attack")
             print("2. GUARD - reduce the boss's next attack")
             print("3. CHARGE - gain 1 charge and prepare for overdrive")
+            if charge > 0 and player_hp < 100:
+                print("4. HEAL - restore 30 HP")
+            elif player_hp >= 100:
+                print("4. HEAL - unavailable: HP is already full")
+            elif player_hp < 100:
+                print("4. HEAL - restore 15 HP because charge is at 0")
+            else:
+                print("4. HEAL - unavailable: HP is already full")
 
-        choice = input("Enter a command (1/2/3): ").strip()
+        choice = input("Enter a command (1/2/3/4): ").strip()
 
         guarding = choice == "2"
         if choice == "1":
-            damage = random.randint(12, 19)
+            damage = random.randint(20, 40)
             boss_hp -= damage
             print(f"\n{name} strikes the terminal shell for {damage} damage!")
         elif choice == "2":
@@ -337,11 +353,19 @@ def final_bossfight():
             if charge >= 3:
                 damage = random.randint(35, 48)
                 boss_hp -= damage
-                charge = 0
+                change_charge(-3)
                 print(f"\n{name} releases OVERDRIVE for {damage} damage!")
             else:
-                charge += 1
+                change_charge(1)
                 print(f"\n{name} feeds corrupted code into the command. Charge: {charge}/3")
+        elif choice == "4":
+            if player_hp >= 100:
+                print("\nHEAL failed. HP is already full!")
+            else:
+                heal_amount = 30 if charge > 0 else 15
+                healed = min(heal_amount, 100 - player_hp)
+                player_hp += healed
+                print(f"\n{name} restores {healed} HP. Charge remains at {charge}/3")
         else:
             print("\nUnknown command. The boss takes the opening!")
 
@@ -353,7 +377,7 @@ def final_bossfight():
             boss_damage = random.randint(17, 25)
             boss_move = "EXECUTE: SYSTEM_CORRUPTION"
         else:
-            boss_damage = random.randint(10, 17)
+            boss_damage = random.randint(1, 7)
             boss_move = "EXECUTE: DATA_ERASE"
 
         if guarding:
