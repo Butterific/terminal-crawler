@@ -14,6 +14,12 @@ Terminal Crawler is a **dungeon style game** featuring `10` unique stages and `2
 This project took around **5** hours of time to make. I know semi-advanced python at the time of making this project. I just really wanted to make a cli game. 
 
 
+
+## Demo Video
+
+https://github.com/user-attachments/assets/e2555215-9fd4-4dc7-955a-968e0415dca2
+
+
 ## Credits
 > These are all my projects :bruh:
  - `gradientor` was made prior to this project with modification to make it work for this project
